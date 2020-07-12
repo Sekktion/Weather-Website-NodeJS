@@ -10,12 +10,16 @@ const forecast = (longitude, latitude, callback) => {
       callback('Unable to find location! Try another search.', undefined)
     } else {
       const {name, region, country} = response.body.location
-      const {weather_descriptions, temperature, feelslike, precip} = response.body.current
+      const {weather_descriptions, weather_icons, temperature, feelslike, precip, wind_speed, wind_dir, humidity} = response.body.current
       const {lat, lon} = response.body.location
       callback(undefined,{
         forecast: weather_descriptions[0],
+        image_forecast: weather_icons[0],
         temperature,
         feelslike,
+        humidity,
+        wind_speed,
+        wind_dir,
         precipitation: precip,
         latitude: lat,
         longitude: lon,
